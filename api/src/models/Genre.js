@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require("sequalize");
 
 module.exports = (sequalize) => {
-  class Genres extends Model {}
+  class Genre extends Model {}
   Genres.init(
     {
       name: {
@@ -9,6 +9,6 @@ module.exports = (sequalize) => {
         allowNull: false,
       },
     },
-    { sequalize, modelName: "genres" }
+    { sequalize, modelName: "genre" }
   );
 };
