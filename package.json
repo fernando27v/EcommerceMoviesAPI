@@ -1,7 +1,7 @@
 {
-  "name": "EcommerceMoviesAPI",
+  "name": "Final Project Ecommerce",
   "version": "1.0.0",
-  "description": "Repository where our Back End will be hosted",
+  "description": "Here our backend will be hosted",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
