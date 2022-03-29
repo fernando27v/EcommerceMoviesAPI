@@ -1,6 +1,6 @@
-const { Model, DataTypes } = require("sequalize");
+const { Model, DataTypes } = require("sequelize");
 
-module.exports = (sequalize) => {
+module.exports = (sequelize) => {
   class Genre extends Model {}
   Genre.init(
     {
@@ -9,6 +9,6 @@ module.exports = (sequalize) => {
         allowNull: false,
       },
     },
-    { sequalize, timestamps: false }
+    { sequelize, timestamps: false }
   );
 };
