@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "movie",
+    "Movie",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -23,21 +23,20 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       //Overview
-      Overview: {
-        type: DataTypes.STRING,
-      },
-      popularity: {
-        type: DataTypes.FLOAT,
+      overview: {
+        type: DataTypes.TEXT,
       },
       release_date: {
         type: DataTypes.STRING,
       },
-      spoken_languages: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+      original_language: {
+        type: DataTypes.STRING,
       },
       vote_average: {
         type: DataTypes.FLOAT,
       },
+      
+
     },
     { timestamps: false }
   );
