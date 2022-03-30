@@ -3,6 +3,6 @@ const movieRoutes = require("./movie");
 
 const router = express.Router();
 
-router.use("/", movieRoutes);
+router.use("/movies", movieRoutes);
 
 module.exports = router;
