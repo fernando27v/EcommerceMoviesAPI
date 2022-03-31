@@ -33,6 +33,7 @@ const loadMovies = async (req, res) => {
         release_date: movie.release_date,
         original_language: movie.original_language,
         vote_average: movie.vote_average,
+<<<<<<< HEAD
         img: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
         genre_ids: movie.genre_ids, //[16,14]
       }; //actor:actor.id
@@ -58,6 +59,16 @@ const loadMovies = async (req, res) => {
           where: { GenreId: e, MovieId: el.id },
         });
       });
+=======
+       img: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
+        
+      }        
+
+    });
+
+    apiInfo.forEach(async (el) => {
+     await Movie.findOrCreate({ where: el });
+>>>>>>> 1b0902a017f3c841c79405eb5a4cce1e7bcd5944
     });
 
     res.json(await Movie.findAll());
