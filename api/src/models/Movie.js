@@ -26,20 +26,14 @@ module.exports = (sequelize) => {
       overview: {
         type: DataTypes.TEXT,
       },
-      popularity: {
-        type: DataTypes.FLOAT,
-      },
       release_date: {
         type: DataTypes.STRING,
       },
-      spoken_languages: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+      original_language: {
+        type: DataTypes.STRING,
       },
       vote_average: {
         type: DataTypes.FLOAT,
-      },
-      type: {
-        type: DataTypes.ENUM("Popular, Latest"),
       },
     },
     { timestamps: false }
