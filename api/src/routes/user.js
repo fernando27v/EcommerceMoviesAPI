@@ -1,12 +1,18 @@
 const express = require("express");
 const { check } = require("express-validator");
-const { getUsers, createUser, loginUser } = require("../controllers/user");
+const {
+  getUsers,
+  createUser,
+  loginUser,
+} = require("../controllers/users/index");
 const { validateFields } = require("../middlewares/validateFields");
 
 const userRouter = express.Router();
 
+// Trae todos los usuarios
 userRouter.get("/", getUsers);
 
+// Registro de Usuario
 userRouter.post(
   "/create",
   [
@@ -28,6 +34,7 @@ userRouter.post(
   createUser
 );
 
+// Login de Usuario
 userRouter.post(
   "/login",
   [
@@ -35,7 +42,6 @@ userRouter.post(
     check("password", "The password must be more than 8 characters").isLength({
       min: 8,
     }),
-    ,
     validateFields,
   ],
   loginUser

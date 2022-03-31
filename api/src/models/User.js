@@ -36,7 +36,7 @@ module.exports = (sequelize) => {
       },
       rol: {
         type: DataTypes.ENUM("ADMIN_ROLE", "SUPER_ROLE", "USER_ROLE"),
-        defaultValue: roles.userRole,
+        defaultValue: "USER_ROLE",
       },
       google: {
         type: DataTypes.BOOLEAN,
