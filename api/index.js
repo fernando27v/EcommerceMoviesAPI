@@ -22,8 +22,8 @@ const { conn } = require("./src/db.js");
 //const {cargaMovies}=require('./src/carga/cargaMovies')
 
 // Syncing all the models at once.
-conn.sync({ force:false }).then(() => {
-  server.listen(process.env.PORT,async () => {
+conn.sync({ force: true }).then(() => {
+  server.listen(process.env.PORT, async () => {
     //wait cargaMovies();
     console.log(`% listening at ${process.env.PORT}`); // eslint-disable-line no-console
   });
