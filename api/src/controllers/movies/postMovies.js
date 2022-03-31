@@ -1,7 +1,8 @@
+const { Movie, Actor, Genre } = require("../../db.js");
 const postMovies = async (req, res, next) => {
     try {
   
-      let { id, title, adult, img, overview,  release_date, spoken_languages, vote_average,type, Genres, Actors }
+      let { id, title, adult, img, overview,  release_date, spoken_languages, vote_average,genres,actors }
         = req.body;
   
       let moviesCreated = await Movie.create({
@@ -13,19 +14,16 @@ const postMovies = async (req, res, next) => {
         release_date,
         spoken_languages,
         vote_average,
-        type,
-        Genres,
-        Actors,
-  
+          
       });
       let genreDb = await Genre.findAll({
-        where: { name: Genres }
-      });
-      let actorDb = await Actor.findAll({
-        where: { name: Actors }
+        where: { name: genres }
+      }); 
+    let actorDb = await Actor.findAll({
+        where: { name: actors }
       });
       moviesCreated.addGenre(genreDb);
-      moviesCreated.addActor(actorDb)
+      moviesCreated.addActor(actorDb) 
   
       res.status(200).json(moviesCreated)
     } catch (error) {

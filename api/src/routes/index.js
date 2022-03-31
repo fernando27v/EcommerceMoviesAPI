@@ -5,7 +5,7 @@ const loadRouter=require("./loadMovies")
 const router = express.Router();
 
 router.use("/movies", movieRoutes);
+router.use("/load-data",loadRouter);
 
-router.use("/load-movies",loadRouter);
 
 module.exports = router;
