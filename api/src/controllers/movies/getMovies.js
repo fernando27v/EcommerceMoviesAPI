@@ -3,34 +3,6 @@ const { Movie, Actor, Genre } = require("../../db.js");
 const axios = require("axios");
 
 
-module.exports = {
-  get: async () => {
-    try {
-      const movies = await Movie.findAll({
-        include: [{
-
-          attributes: ['id', 'name'],
-          model: Genre,
-          through: {
-            attributes: []
-          }
-        },
-        {
-          attributes: ['id', 'name'],
-          model: Actor,
-          through: {
-            attributes: []
-          }
-
-        }],
-      });
-      return movies;
-    } catch (error) {
-      console.error(error);
-      return 0;
-    }
-  },
-}
 
 
 const getMovies = async (req, res) => {
@@ -49,7 +21,24 @@ const getMovies = async (req, res) => {
         ? res.status(200).json(movieByTitle)
         : res.status(404).send("Sorry, Movie not found :(");
     } else {
-      let allMovies = await Movie.findAll()
+      let allMovies = await Movie.findAll({
+        include: [{
+
+          attributes: ['id', 'name'],
+          model: Genre,
+          through: {
+            attributes: []
+          }
+        },
+        {
+          attributes: ['id', 'name'],
+          model: Actor,
+          through: {
+            attributes: []
+          }
+
+        }],
+      })
       res.json(allMovies)
     }
   } catch (error) {
