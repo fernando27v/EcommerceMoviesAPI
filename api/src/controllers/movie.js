@@ -5,7 +5,7 @@ module.exports = {
   getMovies: async () => {
     try {
       const movies = await Movie.findAll({
-        include: [{ model: Actor }, { model: Genre }],
+        // include: [{ model: Actor }, { model: Genre }],
       });
       return movies;
     } catch (error) {

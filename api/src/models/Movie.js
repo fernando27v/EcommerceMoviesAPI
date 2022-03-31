@@ -23,8 +23,8 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       //Overview
-      Overview: {
-        type: DataTypes.STRING,
+      overview: {
+        type: DataTypes.TEXT,
       },
       popularity: {
         type: DataTypes.FLOAT,
@@ -37,6 +37,9 @@ module.exports = (sequelize) => {
       },
       vote_average: {
         type: DataTypes.FLOAT,
+      },
+      type: {
+        type: DataTypes.ENUM("Popular, Latest"),
       },
     },
     { timestamps: false }
