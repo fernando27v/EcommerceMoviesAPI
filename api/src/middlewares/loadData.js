@@ -8,7 +8,7 @@ async function loadGenres() {
     "https://api.themoviedb.org/3/genre/movie/list?api_key=4ec209a2aac7d23aba9a83b713409fab&language=en-US"
   );
   const crear = [...genres].forEach(async(e) => {
-    await Genre.findOrCreate({ where: { id: e.id } });
+    await Genre.findOrCreate({ where: { id: e.id, name:e.name } });
   });
 }
 module.exports = { loadGenres };
