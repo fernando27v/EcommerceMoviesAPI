@@ -5,7 +5,7 @@ const clearItems = require("../controllers/shopping_cart/clearItems");
 const postItems = require("../controllers/shopping_cart/postItems");
 
 shoppingCartRouter.get("/:id",getItems);
-shoppingCartRouter.delete("/:id",clearItems);
+shoppingCartRouter.delete("/delete/:id",clearItems);
 shoppingCartRouter.post("/:id",postItems);
 
 module.exports = {shoppingCartRouter};
