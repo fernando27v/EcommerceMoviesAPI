@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
+const { loadGenres } = require("./middlewares/loadData");
 
 const server = express();
 const cors = require("cors");
@@ -21,6 +22,8 @@ server.use((req, res, next) => {
 });
 
 server.use("/api", routes);
+loadGenres();
+
 // Error catching endware.
 server.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars
