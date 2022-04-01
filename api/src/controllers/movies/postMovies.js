@@ -16,7 +16,6 @@ const postMovies = async (req, res, next) => {
         original_language,
         vote_average,
         price
-               
       })
      genres.forEach( async (g) => {
         const gr = await Genre.findAll({where:{name:g}}); 

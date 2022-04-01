@@ -37,7 +37,7 @@ module.exports = (sequelize) => {
       },
       price:{
         type: DataTypes.FLOAT,
-        defaultValue: Math.random() * (5 - 0.5) + 0.5
+        defaultValue: (Math.random() * (5 - 0.5) + 0.5).toFixed(2),
       }
     },
     { timestamps: false }

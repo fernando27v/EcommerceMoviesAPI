@@ -47,7 +47,7 @@ const loadActors = async (req, res) => {
 
 
     
-        res.json(await Actor.findAll())
+        res.send(ok)
 
     }catch (error) {
         console.log(error.message);
