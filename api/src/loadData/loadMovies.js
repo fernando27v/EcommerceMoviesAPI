@@ -1,22 +1,15 @@
 require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");
-const BASE_URL = "https://api.themoviedb.org/3";
 const { Movie } = require("../db");
 
 const loadMovies = async (req, res) => {
   try {
-    let prom = await Promise.all([
-      axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=55a8fa4c6d88b26c1c9e150c83aa784e&language=en-US&page=1`
-      ),
-      axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=55a8fa4c6d88b26c1c9e150c83aa784e&language=en-US&page=2`
-      ),
-      axios.get(
-        `https://api.themoviedb.org/3/movie/popular?api_key=55a8fa4c6d88b26c1c9e150c83aa784e&language=en-US&page=3`
-      ),
-    ]);
+
+    let prom = await Promise.all([axios.get(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`), axios.get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=2`), axios.get(
+          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=3`)])
 
     moviesOne = prom[0].data.results;
     moviesTwo = prom[1].data.results;

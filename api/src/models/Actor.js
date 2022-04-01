@@ -7,7 +7,6 @@ class Actor extends Model {}
   Actor.init({
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
       primaryKey: true
     },
     name: {
@@ -19,7 +18,7 @@ class Actor extends Model {}
       
     },
     birthday:{
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
      
     },
     profile_path:{
@@ -28,10 +27,9 @@ class Actor extends Model {}
     },
     place_of_birth:{
       type: DataTypes.STRING,
-      allowNull: false,
     },
     deathday:{
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       
     },
     imdb_id:{
