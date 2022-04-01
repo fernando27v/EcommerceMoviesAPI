@@ -7,10 +7,7 @@ const getGenres = async ({ params: { id }, query: { name } }, res) => {
     if (name) {
       const result = await Genre.findAll({
         where: {
-          [Op.or]: [
-            { name: { [Op.like]: `%${name.toUpperCase()}%` } },
-            { name: { [Op.like]: `%${name.toLowerCase()}%` } },
-          ],
+          name: { [Op.iLike]: `%${name}%` },
         },
       });
       if (result.length > 0) res.send(result);
