@@ -25,7 +25,6 @@ const loadMovies = async (req, res) => {
     let apiInfo = moviesOne.concat(moviesTwo).concat(moviesThree);
 
     apiInfo = apiInfo.map((movie) => {
-      console.log(movie);
       return {
         id: movie.id,
         title: movie.title,
