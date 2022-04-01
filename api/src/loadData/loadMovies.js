@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");
-const { Movie, Genre ,movie_genre} = require("../db");
+const { Movie,movie_genre} = require("../db");
 
 const loadMovies = async (req, res) => {
   try {
