@@ -10,5 +10,6 @@ async function loadGenres() {
   const crear = [...genres].forEach(async (e) => {
     await Genre.findOrCreate({ where: { id: e.id, name: e.name } });
   });
+  return crear;
 }
 module.exports = { loadGenres };
