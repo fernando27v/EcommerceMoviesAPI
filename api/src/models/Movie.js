@@ -35,8 +35,6 @@ module.exports = (sequelize) => {
       vote_average: {
         type: DataTypes.FLOAT,
       },
-      
-
     },
     { timestamps: false }
   );

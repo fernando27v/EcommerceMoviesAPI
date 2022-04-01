@@ -3,6 +3,7 @@ const { DataTypes } = require("sequelize");
 //Export de modelo
 module.exports = (sequelize) => {
   // defino el modelo
+
   sequelize.define(
     "User",
     {
@@ -22,10 +23,24 @@ module.exports = (sequelize) => {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      rol: {
+        type: DataTypes.ENUM("ADMIN_ROLE", "SUPER_ROLE", "USER_ROLE"),
+        defaultValue: "USER_ROLE",
+      },
+      google: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     },
     { timestamps: false }

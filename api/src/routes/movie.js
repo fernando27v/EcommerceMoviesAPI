@@ -1,5 +1,5 @@
 const express = require("express");
-const { Movie, Actor, Genre } = require("../db.js");
+// const { Movie, Actor, Genre } = require("../db.js");
 const { getMovies} = require("../controllers/movies/getMovies");
 const { postMovies} = require("../controllers/movies/postMovies");
 const { getMovieById} = require("../controllers/movies/getMovieById");
