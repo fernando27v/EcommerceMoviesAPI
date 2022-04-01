@@ -35,6 +35,10 @@ module.exports = (sequelize) => {
       vote_average: {
         type: DataTypes.FLOAT,
       },
+      price:{
+        type: DataTypes.FLOAT,
+        defaultValue: Math.random() * (5 - 0.5) + 0.5
+      }
     },
     { timestamps: false }
   );

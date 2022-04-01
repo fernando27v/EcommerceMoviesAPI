@@ -3,7 +3,7 @@ const {Op} = require("sequelize");
 const postMovies = async (req, res, next) => {
     try {
   
-      let { id, title, adult, img, overview,  release_date, original_language, vote_average,actors,genres}
+      let { id, title, adult, img, overview,  release_date, original_language, vote_average,actors,genres,price}
         = req.body;
   
       let moviesCreated = await Movie.create({
@@ -15,7 +15,7 @@ const postMovies = async (req, res, next) => {
         release_date,
         original_language,
         vote_average,
-       
+        price
                
       })
      genres.forEach( async (g) => {
