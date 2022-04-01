@@ -25,6 +25,7 @@ const loadMovies = async (req, res) => {
     let apiInfo = moviesOne.concat(moviesTwo).concat(moviesThree);
 
     apiInfo = apiInfo.map((movie) => {
+      console.log(movie);
       return {
         id: movie.id,
         title: movie.title,
@@ -37,6 +38,7 @@ const loadMovies = async (req, res) => {
         genre_ids: movie.genre_ids, //[16,14]
       }; //actor:actor.id
     });
+    // console.log(apiInfo);
 
     apiInfo.forEach(async (el) => {
       let movieCreated = await Movie.findOrCreate({
@@ -60,7 +62,7 @@ const loadMovies = async (req, res) => {
       });
     });
 
-    res.json(await Movie.findAll());
+    res.send("ok");
   } catch (error) {
     console.log(error.message);
   }
