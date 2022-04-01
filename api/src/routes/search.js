@@ -6,4 +6,4 @@ const searchRouter = express.Router();
 
 searchRouter.get("/",searchBar);
 
-module.exports = actorRouter;
+module.exports = searchRouter;

@@ -48,7 +48,7 @@ const loadMovies = async (req, res) => {
           release_date: el.release_date,
           original_language: el.original_language,
           vote_average: el.vote_average,
-          img: "https://image.tmdb.org/t/p/w500" + el.poster_path,
+          img: "https://image.tmdb.org/t/p/w500" + el.img,
         },
       });
       //
