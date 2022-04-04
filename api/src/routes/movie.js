@@ -14,7 +14,7 @@ const movieRouter = express.Router();
 /*  movieRouter.get("/", async (req, res) => {
   const movies = await getMovies();
   res.json(movies);
-}) */; 
+}) */ 
 
 //!----Filter Movies by Id
 movieRouter.get("/", getMovies);

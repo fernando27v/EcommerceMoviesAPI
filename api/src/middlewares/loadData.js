@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { Genre } = require("../db.js");
 
-const loadGenres = async (req, res) => {
+async function loadGenres() {
   let {
     data: { genres },
   } = await axios.get(
@@ -10,6 +10,7 @@ const loadGenres = async (req, res) => {
   const crear = [...genres].forEach(async (e) => {
     await Genre.findOrCreate({ where: { id: e.id, name: e.name } });
   });
-  res.send("Ok");
-};
+
+  return crear
+}
 module.exports = { loadGenres };

@@ -8,6 +8,11 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true,
+      },
+      idApiMovies:{
+        type: DataTypes.INTEGER,
+        allowNull: true,
       },
       title: {
         type: DataTypes.STRING,

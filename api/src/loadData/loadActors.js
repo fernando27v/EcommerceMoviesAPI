@@ -9,7 +9,7 @@ const loadActors = async (req, res) => {
 
     movies.forEach(async (m) => {
       const actors = await axios.get(
-        `https://api.themoviedb.org/3/movie/${m.id}/credits?api_key=${API_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${m.idApiMovies}/credits?api_key=${API_KEY}&language=en-US`
       );
 
       const actorsDetail = await Promise.all([
@@ -27,11 +27,14 @@ const loadActors = async (req, res) => {
       apiInfo = [apiInfo1, apiInfo2];
       apiInfo.forEach(async (el) => {
         try {
-          const a = await Actor.findOrCreate({
+          await Actor.findOrCreate({
             where: {
-              id: el.id,
+              idApiMovies: el.id,
               name: el.name,
-              profile_path: "https://image.tmdb.org/t/p/w500" + el.profile_path,
+              profile_path:
+                el.profile_path != null
+                  ? "https://image.tmdb.org/t/p/w500" + el.profile_path
+                  : null,
               birthday: el.birthday,
               place_of_birth: el.place_of_birth,
               biography: el.biography,
@@ -42,8 +45,9 @@ const loadActors = async (req, res) => {
             },
           });
           const p = await Movie.findOne({ where: { id: m.id } });
+          const a = await Actor.findOne({ where: { idApiMovies: el.id } });
           await actor_movie.findOrCreate({
-            where: { ActorId: el.id, MovieId: p.id },
+            where: { ActorId: a.id, MovieId: p.id },
           });
         } catch (err) {
           console.error(err.message);
