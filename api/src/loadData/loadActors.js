@@ -1,7 +1,7 @@
 require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");
-const { Actor, Movie,actor_movie } = require("../db.js");
+const { Actor, Movie, actor_movie } = require("../db.js");
 
 const loadActors = async (req, res) => {
    let apiInfo= []
@@ -12,8 +12,10 @@ const loadActors = async (req, res) => {
     try {
         const movies = await Movie.findAll();
 
-       movies.forEach(async (m)=> {
-           const actors = await axios.get(`https://api.themoviedb.org/3/movie/${m.idApiMovies}/credits?api_key=${API_KEY}&language=en-US`)
+    movies.forEach(async (m) => {
+      const actors = await axios.get(
+        `https://api.themoviedb.org/3/movie/${m.idApiMovies}/credits?api_key=${API_KEY}&language=en-US`
+      );
 
         if(actors.data.cast[0] && actors.data.cast[1]){
             actorsDetail = await Promise.all([
@@ -79,16 +81,10 @@ const loadActors = async (req, res) => {
         });
             
 
-
-    
-        res.send("Ok")
-
-    }catch (error) {
-        console.log(error.message);
-    }
-    
-
-}
-
+    res.send("Ok");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 module.exports = { loadActors };
