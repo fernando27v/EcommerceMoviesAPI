@@ -51,7 +51,7 @@ const loadActors = async (req, res) => {
       });
     });
 
-    res.send(ok);
+    res.send("Ok");
   } catch (error) {
     console.log(error.message);
   }
