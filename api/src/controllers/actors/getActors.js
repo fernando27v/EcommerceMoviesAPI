@@ -1,4 +1,4 @@
-const {Actor, Movie} = require("../db.js");
+const {Actor, Movie} = require("../../db.js");
 const axios = require("axios");
 const {Op} = require('sequelize');
 
@@ -10,7 +10,7 @@ module.exports = {
       });
       res.json(actors);
     } catch (error) {
-      console.error(error);
+      res.json({error});
       return 0;
     }
   }

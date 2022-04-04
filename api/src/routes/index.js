@@ -1,14 +1,20 @@
 const express = require("express");
 const movieRoutes = require("./movie");
+const userRoutes = require("./user");
+const genreRoutes = require("./genre");
 const actorRoutes = require("./actor");
-const loadRouter=require("./loadData");
+const loadRouter = require("./loadData");
+const searchRouter = require("./search");
+// const shoppingCartRouter = require("./shopping_cart");
 
 const router = express.Router();
 
 router.use("/movies", movieRoutes);
+router.use("/users", userRoutes);
+router.use("/genres", genreRoutes);
 router.use("/actors", actorRoutes);
-router.use("/load-data",loadRouter);
-
-
+router.use("/load-data", loadRouter);
+router.use("/search", searchRouter);
+// router.use("/shopping-cart", shoppingCartRouter);
 
 module.exports = router;

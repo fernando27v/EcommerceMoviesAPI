@@ -3,11 +3,18 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define(
     "Movie",
+    
     {
       id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+        type: DataTypes.UUID,
+        defaultValue:DataTypes.UUIDV4,
         primaryKey: true,
+        allowNull: true,
+      },
+      idApiMovies: {
+        type: DataTypes.INTEGER,
+        allowNull:true
+             
       },
       title: {
         type: DataTypes.STRING,
@@ -35,8 +42,10 @@ module.exports = (sequelize) => {
       vote_average: {
         type: DataTypes.FLOAT,
       },
-      
-
+      price:{
+        type: DataTypes.FLOAT,
+        defaultValue: (Math.random() * (5 - 0.5) + 0.5).toFixed(2),
+      }
     },
     { timestamps: false }
   );

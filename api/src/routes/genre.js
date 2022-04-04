@@ -1,16 +1,15 @@
 const express = require("express");
-const { getGenres } = require("../controllers/genre/getGenres");
-const { postGenre } = require("../controllers/genre/postGenre");
-const { deleteGenre } = require("../controllers/genre/deleteGenre");
-const { update } = require("../controllers/genre/putGenre");
-const { getById } = require("../controllers/genre/getById");
+const { getGenres } = require("../controllers/genre/get");
+const { postGenre } = require("../controllers/genre/post");
+const { deleteGenre } = require("../controllers/genre/delete");
+const { updateGenre} = require("../controllers/genre/put");
 
 const router = express.Router();
 
-router.get("/", getGenres);
-router.get("/:id", getGenres);
-router.put("/", update);
-router.post("/", postGenre);
-router.delete("/:id", deleteGenre);
+router.get("/", getGenres);             //GET       http://localhost:3001/api/genres
+router.get("/:id", getGenres);          //GET       http://localhost:3001/api/genres/12
+router.put("/", updateGenre);           //PUT       http://localhost:3001/api/genres 
+router.post("/", postGenre);            //POST      http://localhost:3001/api/genres
+router.delete("/:id", deleteGenre);     //DELETE    http://localhost:3001/api/genres/12
 
 module.exports = router;
