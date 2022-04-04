@@ -11,7 +11,6 @@ const loadActors = async (req, res) => {
       const actors = await axios.get(
         `https://api.themoviedb.org/3/movie/${m.idApiMovies}/credits?api_key=${API_KEY}&language=en-US`
       );
-      console.log(actors.data.cast);
 
       const actorsDetail = await Promise.all([
         axios.get(
