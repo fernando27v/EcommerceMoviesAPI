@@ -15,7 +15,7 @@ const loadActors = async (req, res) => {
        movies.forEach(async (m)=> {
            const actors = await axios.get(`https://api.themoviedb.org/3/movie/${m.idApiMovies}/credits?api_key=${API_KEY}&language=en-US`)
 
-        if(actors.data.cast[0].id !== undefined && actors.data.cast[1].id !== undefined){
+        if(actors.data.cast[0] && actors.data.cast[1]){
             actorsDetail = await Promise.all([
            axios.get(`https://api.themoviedb.org/3/person/${actors.data.cast[0].id}?api_key=${API_KEY}&language=en-US`),
            axios.get(`https://api.themoviedb.org/3/person/${actors.data.cast[1].id}?api_key=${API_KEY}&language=en-US`)
@@ -46,9 +46,9 @@ const loadActors = async (req, res) => {
             }
         })
 
-        }else if (!actors.data.cast[0].id){
+        }else if (!actors.data.cast[0]){
             return
-        }else if(actors.data.cast[0].id && !actors.data.cast[1].id){
+        }else if(actors.data.cast[0] && !actors.data.cast[1]){
             actorsDetail = await axios.get(`https://api.themoviedb.org/3/person/${actors.data.cast[0].id}?api_key=${API_KEY}&language=en-US`)
             apiInfo1 = actorsDetail.data
             
