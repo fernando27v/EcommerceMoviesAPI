@@ -9,12 +9,11 @@ module.exports = (sequelize) => {
         type: DataTypes.UUID,
         defaultValue:DataTypes.UUIDV4,
         primaryKey: true,
-        allowNull: true,
+        autoIncrement: true,
       },
-      idApiMovies: {
+      idApiMovies:{
         type: DataTypes.INTEGER,
-        allowNull:true
-             
+        allowNull: true,
       },
       title: {
         type: DataTypes.STRING,

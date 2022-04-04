@@ -23,7 +23,11 @@ const loadMovies = async (req, res) => {
 
     //console.log('yo soy cargaMovies', movies)
     let apiInfo = moviesOne.concat(moviesTwo).concat(moviesThree);
+<<<<<<< HEAD
    
+=======
+
+>>>>>>> ea63c1ce937294055dc99f8abd4ce8621536699e
     apiInfo = apiInfo.map((movie) => {
       return {
         id: movie.id,
@@ -52,11 +56,16 @@ const loadMovies = async (req, res) => {
           img: el.img,
           price:(Math.random() * (5 - 0.5) + 0.5).toFixed(2)
         },
+<<<<<<< HEAD
         
 
       });
       //
       //console.log('yo soy apiInfo',apiInfo)
+=======
+      });
+      //
+>>>>>>> ea63c1ce937294055dc99f8abd4ce8621536699e
 
       el.genre_ids.forEach(async (e) => {
         const m = await Movie.findOne({where:{idApiMovies:el.id}})
@@ -66,7 +75,11 @@ const loadMovies = async (req, res) => {
       });
     });
 
+<<<<<<< HEAD
     res.send("ok");
+=======
+    res.send("Ok");
+>>>>>>> ea63c1ce937294055dc99f8abd4ce8621536699e
   } catch (error) {
     console.log(error.message);
   }
