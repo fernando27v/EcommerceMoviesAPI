@@ -4,21 +4,24 @@ const axios = require("axios");
 const { Actor, Movie,actor_movie } = require("../db.js");
 
 const loadActors = async (req, res) => {
-   
+    let actorsArray =[];
+
     try {
         const movies = await Movie.findAll();
 
        movies.forEach(async (m)=> {
-           const actors = await axios.get(`https://api.themoviedb.org/3/movie/${m.idApiMovies}/credits?api_key=${API_KEY}&language=en-US`)
+           const casting = await axios.get(`https://api.themoviedb.org/3/movie/${m.idApiMovies}/credits?api_key=${API_KEY}&language=en-US`)
 
-
-              const actorsDetail = await axios.get(`https://api.themoviedb.org/3/person/${actors.data.cast[0].id}?api_key=${API_KEY}&language=en-US`)
+              casting.data.cast.forEach(async (a)=>{
+              
+               let actors = await axios.get(`https://api.themoviedb.org/3/person/${a.id}?api_key=${API_KEY}&language=en-US`)
+               actorsArray.push(actors.data)
+                })
+              //const actorsDetail = await axios.get(`https://api.themoviedb.org/3/person/${actors.data.cast[0].id}?api_key=${API_KEY}&language=en-US`)
               
               
-            apiInfo1 = actorsDetail.data
+               const apiInfo = actorsArray.slice(0,2)
 
-
-           apiInfo = [apiInfo1]
               apiInfo.forEach(async (el) => {
               try{
                     await Actor.findOrCreate({where:{
