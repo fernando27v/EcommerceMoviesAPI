@@ -11,16 +11,14 @@ const loadActors = async (req, res) => {
        movies.forEach(async (m)=> {
            const actors = await axios.get(`https://api.themoviedb.org/3/movie/${m.idApiMovies}/credits?api_key=${API_KEY}&language=en-US`)
 
-       
-              const actorsDetail = await Promise.all([
-           axios.get(`https://api.themoviedb.org/3/person/${actors.data.cast[0].id}?api_key=${API_KEY}&language=en-US`),
-           axios.get(`https://api.themoviedb.org/3/person/${actors.data.cast[1].id}?api_key=${API_KEY}&language=en-US`)
-           ])
 
-            apiInfo1 = actorsDetail[0].data
-            apiInfo2 = actorsDetail[1].data
+              const actorsDetail = await axios.get(`https://api.themoviedb.org/3/person/${actors.data.cast[0].id}?api_key=${API_KEY}&language=en-US`)
+              
+              
+            apiInfo1 = actorsDetail.data
 
-           apiInfo = [apiInfo1, apiInfo2]
+
+           apiInfo = [apiInfo1]
               apiInfo.forEach(async (el) => {
               try{
                     await Actor.findOrCreate({where:{
