@@ -42,7 +42,7 @@ const loadMovies = async (req, res) => {
     apiInfo.forEach(async (el) => {
       let movieCreated = await Movie.findOrCreate({
         where: {
-          id: el.id,
+          idApiMovies: el.id,
           title: el.title,
           adult: el.adult,
           overview: el.overview,
@@ -56,13 +56,14 @@ const loadMovies = async (req, res) => {
       //
 
       el.genre_ids.forEach(async (e) => {
+        const m = await Movie.findOne({where:{idApiMovies:el.id}})
         await movie_genre.findOrCreate({
-          where: { GenreId: e, MovieId: el.id },
+          where: { GenreId: e, MovieId: m.id },
         });
       });
     });
 
-    res.send("ok");
+    res.send("Ok");
   } catch (error) {
     console.log(error.message);
   }
