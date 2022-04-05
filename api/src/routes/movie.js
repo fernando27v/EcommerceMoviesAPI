@@ -11,6 +11,10 @@ const movieRouter = express.Router();
 
 
 
+/*  movieRouter.get("/", async (req, res) => {
+  const movies = await getMovies();
+  res.json(movies);
+}) */ 
 
 
 movieRouter.get("/", getMovies);
