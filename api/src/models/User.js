@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 
-//Export de modelo
+// Export de modelo
 module.exports = (sequelize) => {
   // defino el modelo
 
