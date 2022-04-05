@@ -1,15 +1,13 @@
 
 const { Movie, Actor, Genre } = require("../../db.js");
-const {Op} = require("sequelize");
+const { Op } = require("sequelize");
 const postMovies = async (req, res, next) => {
-<<<<<<< HEAD
   try {
 
-    let { idApiMovie, title, adult, img, overview, release_date, original_language, vote_average, actors, genres,price }
+    let { title, adult, img, overview, release_date, original_language, vote_average, actors, genres, price }
       = req.body;
 
     let moviesCreated = await Movie.create({
-      idApiMovie,
       title,
       adult,
       img,
@@ -17,52 +15,29 @@ const postMovies = async (req, res, next) => {
       release_date,
       original_language,
       vote_average,
-      price
+      price: price != null ? price : (Math.random() * (5 - 0.5) + 0.5).toFixed(2)
     })
-
-
-    genres.forEach( async (g) => {
-      const gr = await Genre.findAll({where:{name:g}}); 
-
-    moviesCreated.addGenre(gr);
-=======
-    try {
-  
-      let {title, adult, img, overview,  release_date, original_language, vote_average,actors,genres,price}
-        = req.body;
-  
-      let moviesCreated = await Movie.create({
-        title,
-        adult,
-        img,
-        overview,
-        release_date,
-        original_language,
-        vote_average,
-        price: price != null ? price : (Math.random() * (5 - 0.5) + 0.5).toFixed(2)
-      })
-     genres.forEach( async (g) => {
-        const gr = await Genre.findAll({where:{name:g}}); 
+    genres.forEach(async (g) => {
+      const gr = await Genre.findAll({ where: { name: g } });
 
       moviesCreated.addGenre(gr);
-     })
-   
-     actors.forEach(async (a) => {
-      const ac = await Actor.findAll({where:{name:{[Op.iLike]:`%${a}%`}}}); 
+    })
+
+    actors.forEach(async (a) => {
+      const ac = await Actor.findAll({ where: { name: { [Op.iLike]: `%${a}%` } } });
 
       moviesCreated.addActor(ac)
->>>>>>> ea63c1ce937294055dc99f8abd4ce8621536699e
-   })
- 
-   actors.forEach(async (a) => {
-    const ac = await Actor.findAll({where:{name:{[Op.iLike]:`%${a}%`}}}); 
+    })
 
-    moviesCreated.addActor(ac)
- })
+    actors.forEach(async (a) => {
+      const ac = await Actor.findAll({ where: { name: { [Op.iLike]: `%${a}%` } } });
 
- 
+      moviesCreated.addActor(ac)
+    })
+
     res.status(200).json(moviesCreated)
   } catch (error) {
+
     console.log(error)
   }
 }
