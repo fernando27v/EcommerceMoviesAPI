@@ -29,12 +29,6 @@ const postMovies = async (req, res, next) => {
       moviesCreated.addActor(ac)
     })
 
-    actors.forEach(async (a) => {
-      const ac = await Actor.findAll({ where: { name: { [Op.iLike]: `%${a}%` } } });
-
-      moviesCreated.addActor(ac)
-    })
-
     res.status(200).json(moviesCreated)
   } catch (error) {
 
