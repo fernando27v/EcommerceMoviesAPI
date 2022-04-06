@@ -1,4 +1,6 @@
 const { User } = require("../../db.js");
+const { Op } = require("sequelize");
+const bcryptjs = require("bcryptjs");
 
 const createUser = async (req, res) => {
   const { name, surname, username, email, password } = req.body;
