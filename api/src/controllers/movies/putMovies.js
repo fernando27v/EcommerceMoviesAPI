@@ -19,18 +19,18 @@ const putMovies = async (req, res, next) => {
       },
         
     })
-    .then((product) => {
-        if (product) {
-          product
+    .then((mov) => {
+        if (mov) {
+          mov
             .update({title, adult, img, overview, release_date, original_language, vote_average, actors, genres, price })
-            .then((productUpdated) => {
-              //elimina las categorias para luego setear el nuevo set
-              productUpdated.setGenres();
-              //recorre las categorias que llegan por body
+            .then((movUpdated) => {
+              
+              movUpdated.setGenres();
+            
               genres.map((genres) => {
-                //buscar categoria a la que tengo que agregar el producto
+                
                 Genre.findAll({ where: { name: genres } }).then((res) =>
-                  productUpdated.addGenres(res)
+                  movUpdated.addGenres(res)
                 );
               });
             })
