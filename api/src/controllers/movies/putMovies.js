@@ -1,50 +1,59 @@
-
-const { Movie, Actor, Genre } = require("../../db.js");
+const { Movie, Actor, Genre, movie_genre, actor_movie } = require("../../db.js");
 const { Op } = require("sequelize");
 const { set } = require("express/lib/application");
+const { send } = require("express/lib/response");
 
-const putMovies = async (req, res, next) => {
+const putMovies = async (req, res) => {
 
-     const movie = req.params.id;
-    const genreId = req.params.id;
-    console.log('yo soy genre')
+    const { id } = req.params;
+    const { idGenre } = req.params;
+    let { name } = req.body;
+    let { title, adult, img, overview, release_date, original_language, vote_average, genres, actors, price }
+        = req.body;
+    const movie = req.params.id;
+    const actor = req.params.id;
+    Movie.update(
+        {
+            title: title, adult: adult, img: img, overview: overview, release_date: release_date, original_language: original_language, vote_average: vote_average, price: price
+        }, { where: { id: id } })
+        .then(() => {
+            if (genres.length > 0) {
+                movie_genre.destroy(
+                    {
+                        where: { MovieId: movie }
+                    }
+                )
+                console.log(genres)
+                genres.forEach((e) => {
+                    movie_genre.create({
+                        GenreId: e, MovieId: movie
 
-    let { title, adult, img, overview, release_date, original_language, vote_average, actors, genres, price }
-    = req.body;
-   
 
-    Movie.findOne({
-      where: {
-        id: movie,
-      },
-        
-    })
-    .then((mov) => {
-        if (mov) {
-          mov
-            .update({title, adult, img, overview, release_date, original_language, vote_average, actors, genres, price })
-            .then((movUpdated) => {
-              
-              movUpdated.setGenres();
-            
-              genres.map((genres) => {
-                
-                Genre.findAll({ where: { name: genres } }).then((res) =>
-                  movUpdated.addGenres(res)
-                );
-              });
-            })
-            .then(res.status(200).send(product));
-        } else {
-          res.status(400).send("No se encontró producto con ese ID");
-        }
-      })
-  
-      .catch((err) => {
-        res.status(400).send("Los campos enviados no son correctos" + err);
-      });
-  };
-     
+                    });
+                })
+            } 
+            if (actors.length > 0) {
+                actor_movie.destroy(
+                    {
+                        where: { MovieId: movie }
+                    }
+                )
+                console.log(genres)
+                actors.forEach((e) => {
+                    actor_movie.create({
+                        ActorId: e, MovieId: movie
+                    });
+                })
+            }
+            res.send('was updated correctly')
+        })
+        .catch((err) => {
+            //Error Handler
+            console.log(err);
+            res.status(400).send("Error updating the movie");
+        });
+}
+
 module.exports = {
     putMovies
 }
