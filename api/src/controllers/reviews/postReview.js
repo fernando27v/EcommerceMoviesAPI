@@ -12,7 +12,7 @@ module.exports ={
            Review.create({
                text,
                vote,
-               UserId: userId,
+               UserUid: userId,
                MovieId: movieId
            }).then(review => res.json(review))
            .catch(err => res.send(err.message))

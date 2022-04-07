@@ -1,4 +1,4 @@
-const { Movie, Review } = require("../../db.js");
+const { Movie, Review,User } = require("../../db.js");
 
 module.exports = {
 
@@ -11,15 +11,11 @@ module.exports = {
             },
             include: [
                 {
-                    model: Users,
-                    as: "users",
+                    model: User,
                 },
-                {
-                    model: Movie,
-                }
             ],
         })
             .then((data) => res.status(200).send(data))
-            .catch(err => res.send(err))
+            .catch(err => res.send(err.message))
     }
 }
