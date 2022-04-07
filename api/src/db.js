@@ -78,6 +78,9 @@ Movie.belongsToMany(User, { through: "shopping_cart" });
 User.hasMany(Review);
 Review.belongsTo(User);
 
+Movie.hasMany(Review);
+Review.belongsTo(Movie);
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
