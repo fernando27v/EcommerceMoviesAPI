@@ -1,50 +1,51 @@
-const { Movie, Actor, Genre, movie_genre, actor_movie } = require("../../db.js");
-const { Op } = require("sequelize");
-const { set } = require("express/lib/application");
-const { send } = require("express/lib/response");
+const { Movie,movie_genre, actor_movie,Genre ,Actor} = require("../../db.js");
+
 
 const putMovies = async (req, res) => {
 
     const { id } = req.params;
-    const { idGenre } = req.params;
-    let { name } = req.body;
-    let { title, adult, img, overview, release_date, original_language, vote_average, genres, actors, price }
+    let { title,urlMovie, adult, img, overview, release_date, original_language, vote_average, genres, actors, price }
         = req.body;
-    const movie = req.params.id;
-    const actor = req.params.id;
+
     Movie.update(
         {
-            title: title, adult: adult, img: img, overview: overview, release_date: release_date, original_language: original_language, vote_average: vote_average, price: price
+            title: title, adult: adult, img: img, overview: overview, release_date: release_date, original_language: original_language, vote_average: vote_average, price: price,urlMovie:urlMovie
         }, { where: { id: id } })
         .then(() => {
-            if (genres.length > 0) {
+            if(genres){
+                if (genres.length > 0) {
                 movie_genre.destroy(
                     {
-                        where: { MovieId: movie }
+                        where: { MovieId: id }
                     }
                 )
-                console.log(genres)
-                genres.forEach((e) => {
+
+                genres.forEach(async (e) => {
+                   const g =  await Genre.findOne({ where: { name: e } })
                     movie_genre.create({
-                        GenreId: e, MovieId: movie
+                        GenreId: g.id, MovieId: id
 
 
                     });
                 })
             } 
-            if (actors.length > 0) {
+        }
+            if(actors){
+                if (actors.length > 0) {
                 actor_movie.destroy(
                     {
-                        where: { MovieId: movie }
+                        where: { MovieId: id }
                     }
                 )
-                console.log(genres)
-                actors.forEach((e) => {
+                actors.forEach(async (e) => {
+                    const a =  await Actor.findOne({ where: { name: e } })
                     actor_movie.create({
-                        ActorId: e, MovieId: movie
+                        ActorId: a.id, MovieId: id
                     });
                 })
             }
+        }
+            
             res.send('was updated correctly')
         })
         .catch((err) => {
