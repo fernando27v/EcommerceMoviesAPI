@@ -1,26 +1,21 @@
-const {shopping_card} = require("../../db")
+const { Shopping_cart } = require("../../db");
 
-module.exports ={
-    
-    postItems :(req,res) =>{
-        const {UserId} = req.params;
-        const {MovieId} = req.body;
+module.exports = {
+  postItems: (req, res) => {
+    const { id } = req.params;
+    const { MovieId } = req.body;
 
-        MovieId.forEach((m)=> {
-        
-        shopping_card.findOrCreate({
-            UserId,
-            MovieId: m
-        }).then(()=>{
-            res.status(200).json({
-                message:"Item añadido al carrito"
-            })
-        }).catch(err =>{
-            res.status(500).send({
-                message:"Error al añadir item al carrito",
-                err
-            })
-        })
-        })
-    }
-}
+    Shopping_cart.create({
+      UserUid: id,
+      MovieId: MovieId,
+    })
+      .then(() => {
+        res.status(200).json({
+          msg: "Item add",
+        });
+      })
+      .catch((err) => {
+        res.status(500).send(err.parent.detail);
+      });
+  },
+};

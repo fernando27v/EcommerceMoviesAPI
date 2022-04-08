@@ -1,9 +1,20 @@
-module.exports ={
+const { Shopping_cart, Movie, User } = require("../../db");
 
-
-    getItems :() =>{
-
-        
+module.exports = {
+  getItems: async ({ params: { id } }, res) => {
+    try {
+      const cart = await Movie.findAll({
+        include: [
+          {
+            model: Shopping_cart,
+            where: { UserUid: id },
+            attributes: [],
+          },
+        ],
+      });
+      res.json(cart);
+    } catch (error) {
+      res.status(404).json(error)
     }
-    
-    }
+  },
+};
