@@ -2,11 +2,11 @@ const { Shopping_cart } = require("../../db");
 
 module.exports = {
   postItems: (req, res) => {
-    const { id } = req.params;
+    const { userId } = req.params;
     const { MovieId } = req.body;
 
     Shopping_cart.create({
-      UserUid: id,
+      UserUid: userId,
       MovieId: MovieId,
     })
       .then(() => {

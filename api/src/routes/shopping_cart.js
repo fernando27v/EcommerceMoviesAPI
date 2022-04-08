@@ -5,9 +5,9 @@ const {clearItem} = require("../controllers/shopping_cart/clearItem");
 const {clearItems} = require("../controllers/shopping_cart/clearItems");
 const { postItems } = require("../controllers/shopping_cart/postItems");
 
-shoppingCartRouter.get("/:id", getItems);
-shoppingCartRouter.delete("/item/:id",clearItem);
-shoppingCartRouter.delete("/items/:id",clearItems);
-shoppingCartRouter.post("/:id", postItems);
+shoppingCartRouter.get("/:userId", getItems);
+shoppingCartRouter.delete("/item/:userId",clearItem);
+shoppingCartRouter.delete("/items/:userId",clearItems);
+shoppingCartRouter.post("/:userId", postItems);
 
 module.exports = shoppingCartRouter;

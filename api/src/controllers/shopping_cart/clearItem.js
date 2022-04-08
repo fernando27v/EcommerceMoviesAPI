@@ -2,11 +2,11 @@ const { Shopping_cart } = require("../../db");
 
 module.exports = {
   clearItem: async (req, res) => {
-    const { id } = req.params;
+    const { userId } = req.params;
     const { MovieId } = req.body;
 
     Shopping_cart.destroy({
-      where: { UserUid: id, MovieId },
+      where: { UserUid: userId, MovieId },
     })
       .then(() => {
         res.status(200).json({ msg: "item deleted" });
