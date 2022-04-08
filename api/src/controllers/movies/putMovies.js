@@ -9,11 +9,12 @@ const putMovies = async (req, res) => {
 
     Movie.update(
         {
-            title: title, adult: adult, img: img, overview: overview, release_date: release_date, original_language: original_language, vote_average: vote_average, price: price,urlMovie:urlMovie
-        }, { where: { id: id } })
+            title, adult, img, overview, release_date, original_language, vote_average, price,urlMovie
+        }, { where: { id } })
         .then(() => {
             if(genres){
-                if (genres.length > 0) {
+                if(Array.isArray(genres)){
+                     if (genres.length > 0) {
                 movie_genre.destroy(
                     {
                         where: { MovieId: id }
@@ -29,9 +30,12 @@ const putMovies = async (req, res) => {
                     });
                 })
             } 
+                }
+               
         }
             if(actors){
-                if (actors.length > 0) {
+                if(Array.isArray(actors)){
+                  if (actors.length > 0) {
                 actor_movie.destroy(
                     {
                         where: { MovieId: id }
@@ -44,6 +48,8 @@ const putMovies = async (req, res) => {
                     });
                 })
             }
+                }
+              
         }
             
             res.send('was updated correctly')
