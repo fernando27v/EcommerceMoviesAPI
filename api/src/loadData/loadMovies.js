@@ -23,7 +23,6 @@ const loadMovies = async (req, res) => {
 
     //console.log('yo soy cargaMovies', movies)
     let apiInfo = moviesOne.concat(moviesTwo).concat(moviesThree);
-
     apiInfo = apiInfo.map((movie) => {
       return {
         id: movie.id,

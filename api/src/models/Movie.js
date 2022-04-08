@@ -3,10 +3,10 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   sequelize.define(
     "Movie",
+    
     {
       id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
@@ -43,6 +43,9 @@ module.exports = (sequelize) => {
       price:{
         type: DataTypes.FLOAT,
         defaultValue: (Math.random() * (5 - 0.5) + 0.5).toFixed(2),
+      },
+      urlMovie:{
+        type: DataTypes.STRING
       }
     },
     { timestamps: false }
