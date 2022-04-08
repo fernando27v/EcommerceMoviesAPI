@@ -1,22 +1,21 @@
-const { Movie, Actor, Genre, Review } = require("../../db.js");
+const { Movie, Review,User } = require("../../db.js");
 
 module.exports = {
 
 
     getReviewsOfAMovie: async (req, res, next) => {
         const idMovie = req.params.idMovie;
-        Reviews.findAll({
+        Review.findAll({
             where: {
                 MovieId: idMovie,
             },
             include: [
                 {
-                    model: Users,
-                    as: "users",
+                    model: User,
                 },
             ],
         })
             .then((data) => res.status(200).send(data))
-            .catch(err => res.send(err))
+            .catch(err => res.send(err.message))
     }
 }

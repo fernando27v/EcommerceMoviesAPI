@@ -4,13 +4,11 @@ module.exports = {
 
 
     deleteReview: async (req, res, next) => {
-        const MovieId = req.params.id;
-        const reviewId = req.params.id;
+        const reviewId = req.params.reviewId;
 
         Review.destroy({
             where: {
-                id: reviewId,
-                MovieId: MovieId,
+                id: reviewId
             }
         })
             .then((review) => res.status(200).json(review))

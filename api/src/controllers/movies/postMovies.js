@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 const postMovies = async (req, res, next) => {
   try {
 
-    let { title, adult, img, overview, release_date, original_language, vote_average, actors, genres, price }
+    let { title, adult, urlMovie,img, overview, release_date, original_language, vote_average, actors, genres, price }
       = req.body;
 
     let moviesCreated = await Movie.create({
@@ -15,6 +15,7 @@ const postMovies = async (req, res, next) => {
       release_date,
       original_language,
       vote_average,
+      urlMovie,
       price: price != null ? price : (Math.random() * (5 - 0.5) + 0.5).toFixed(2)
     })
     genres.forEach(async (g) => {
