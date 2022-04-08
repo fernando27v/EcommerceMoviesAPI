@@ -83,4 +83,10 @@ const loadActors = async (req, res) => {
 
 
     });
+    res.send("Ok");
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 module.exports = { loadActors };

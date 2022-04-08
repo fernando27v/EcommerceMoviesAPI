@@ -9,7 +9,7 @@ const {
 } = require("../controllers/users/index");
 const validateFields = require("../middlewares/validateFields");
 const validateJWT = require("../middlewares/validateJWT");
-const isAdmin = require("../middlewares/validateRole");
+const isAdmin = require("../middlewares/isAdmin");
 
 const userRouter = express.Router();
 
