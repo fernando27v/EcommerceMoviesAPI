@@ -14,7 +14,6 @@ module.exports = {
       });
       res.json(cart);
     } catch (error) {
-      console.log(error);
       res.status(404).json(error)
     }
   },

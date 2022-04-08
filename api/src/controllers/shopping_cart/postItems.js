@@ -11,14 +11,11 @@ module.exports = {
     })
       .then(() => {
         res.status(200).json({
-          message: "Item añadido al carrito",
+          msg: "Item add",
         });
       })
       .catch((err) => {
-        res.status(500).send({
-          message: "Error al añadir item al carrito",
-          err,
-        });
+        res.status(500).send(err.parent.detail);
       });
   },
 };
