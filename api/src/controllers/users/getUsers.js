@@ -7,10 +7,10 @@ const getUsers = async (req, res) => {
       order: [["name", "ASC"]],
     });
 
-    res.json(users);
+    return res.status(200).json(users);
   } catch (error) {
     console.error(error);
-    res.json({ msg: "Error bringing users" });
+    return res.json({ msg: "Error bringing users" });
   }
 };
 

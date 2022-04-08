@@ -1,3 +1,5 @@
+const { Op } = require("sequelize");
+const bcryptjs = require("bcryptjs");
 const { User } = require("../../db.js");
 const { Op } = require("sequelize");
 const bcryptjs = require("bcryptjs");
@@ -20,7 +22,7 @@ const createUser = async (req, res) => {
       //Crea un "salt" para encriptar la contraseña
       const salt = bcryptjs.genSaltSync();
 
-      //El email no existe, procedo a crear el usuario
+      //El usuario no existe, procedo a crear el usuario
       user = await User.build({
         name,
         surname,
@@ -33,8 +35,8 @@ const createUser = async (req, res) => {
       user.password = bcryptjs.hashSync(password, salt);
 
       await user.save();
-      console.log(user);
-      res.json(user);
+
+      return res.status(200).json(user);
     }
   } catch (error) {
     console.error(error);
