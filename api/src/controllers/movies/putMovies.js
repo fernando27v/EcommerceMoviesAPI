@@ -22,13 +22,10 @@ const putMovies = async (req, res) => {
                     {
                         where: { MovieId: movie }
                     }
-                )
-                console.log(genres)
+                )                
                 genres.forEach((e) => {
                     movie_genre.create({
                         GenreId: e, MovieId: movie
-
-
                     });
                 })
             } 
@@ -38,8 +35,7 @@ const putMovies = async (req, res) => {
                         where: { MovieId: movie }
                     }
                 )
-                console.log(genres)
-                actors.forEach((e) => {
+                 actors.forEach((e) => {
                     actor_movie.create({
                         ActorId: e, MovieId: movie
                     });
