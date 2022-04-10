@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-
+const { Sequelize } = require("sequelize");
 // Export de modelo
 module.exports = (sequelize) => {
   // defino el modelo
@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
       id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
       },
       nickname: {
