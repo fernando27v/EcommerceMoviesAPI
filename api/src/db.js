@@ -61,7 +61,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Actor, Genre, Movie, user, Record, Shopping_cart,Review } = sequelize.models;
+const { Actor, Genre, Movie, User, Record, Shopping_cart,Review } = sequelize.models;
 // Aca vendrian las relaciones
 Actor.belongsToMany(Movie, { through: "actor_movie" });
 Movie.belongsToMany(Actor, { through: "actor_movie" });
@@ -69,18 +69,15 @@ Movie.belongsToMany(Actor, { through: "actor_movie" });
 Genre.belongsToMany(Movie, { through: "movie_genre" });
 Movie.belongsToMany(Genre, { through: "movie_genre" });
 
-user.belongsToMany(Movie, { through: "wish_list" });
-Movie.belongsToMany(user, { through: "wish_list" });
-
-user.belongsToMany(Movie, { through: Shopping_cart });
-Movie.belongsToMany(user, { through: Shopping_cart });
-user.hasMany(Shopping_cart);
-Shopping_cart.belongsTo(user);
+User.belongsToMany(Movie, { through: Shopping_cart });
+Movie.belongsToMany(User, { through: Shopping_cart });
+User.hasMany(Shopping_cart);
+Shopping_cart.belongsTo(User);
 Movie.hasMany(Shopping_cart);
 Shopping_cart.belongsTo(Movie);
 
-user.hasMany(Review);
-Review.belongsTo(user);
+User.hasMany(Review);
+Review.belongsTo(User);
 
 Movie.hasMany(Review);
 Review.belongsTo(Movie);
