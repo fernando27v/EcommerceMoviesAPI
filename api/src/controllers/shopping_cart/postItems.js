@@ -6,7 +6,7 @@ module.exports = {
     const { MovieId } = req.body;
 
     Shopping_cart.create({
-      UserUid: userId,
+      UserId: userId,
       MovieId: MovieId,
     })
       .then(() => {
