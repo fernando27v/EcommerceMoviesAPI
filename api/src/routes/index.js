@@ -11,7 +11,7 @@ const bestMoviesRouter = require("./bestMovies");
 const router = express.Router();
 
 router.use("/movies", movieRoutes);
-router.use("/users", userRoutes);
+//router.use("/users", userRoutes);
 router.use("/genres", genreRoutes);
 router.use("/actors", actorRoutes);
 router.use("/load-data", loadRouter);
