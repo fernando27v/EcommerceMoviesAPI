@@ -4,8 +4,12 @@ const {
   getUsers,
   createUser,
   loginUser,
+  deleteUser,
+  setRole,
 } = require("../controllers/users/index");
-const { validateFields } = require("../middlewares/validateFields");
+const validateFields = require("../middlewares/validateFields");
+const validateJWT = require("../middlewares/validateJWT");
+const isAdmin = require("../middlewares/isAdmin");
 
 const userRouter = express.Router();
 
@@ -23,11 +27,6 @@ userRouter.post(
       min: 8,
     }),
     check("email", "The email is not valid").isEmail(),
-    check("role", "Not a valid role").isIn([
-      "ADMIN_ROLE",
-      "SUPER_ROLE",
-      "USER_ROLE",
-    ]),
     //Este custom middleware lanza un error en caso de que alguno de los checks fallara
     validateFields,
   ],
@@ -46,5 +45,9 @@ userRouter.post(
   ],
   loginUser
 );
+
+userRouter.delete("/delete", deleteUser);
+
+userRouter.put("/set-role", setRole);
 
 module.exports = userRouter;

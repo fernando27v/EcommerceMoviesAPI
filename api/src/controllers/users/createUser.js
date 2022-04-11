@@ -1,6 +1,7 @@
-const { User } = require("../../db.js");
 const { Op } = require("sequelize");
 const bcryptjs = require("bcryptjs");
+const { User } = require("../../db.js");
+
 
 const createUser = async (req, res) => {
   const { name, surname, username, email, password } = req.body;
@@ -8,7 +9,7 @@ const createUser = async (req, res) => {
   try {
     //Valido si el email o el username existen en la DB
     let user = await User.findOne({
-      where: { [Op.or]: [{ email }, { username }] },
+      where: { email },
     });
 
     //Si el email o el username existen retorna esto
@@ -20,11 +21,8 @@ const createUser = async (req, res) => {
       //Crea un "salt" para encriptar la contraseña
       const salt = bcryptjs.genSaltSync();
 
-      //El email no existe, procedo a crear el usuario
+      //El usuario no existe, procedo a crear el usuario
       user = await User.build({
-        name,
-        surname,
-        username,
         email,
         password,
       });
@@ -33,8 +31,8 @@ const createUser = async (req, res) => {
       user.password = bcryptjs.hashSync(password, salt);
 
       await user.save();
-      console.log(user);
-      res.json(user);
+
+      return res.status(200).json(user);
     }
   } catch (error) {
     console.error(error);

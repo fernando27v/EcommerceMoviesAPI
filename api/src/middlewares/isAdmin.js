@@ -2,13 +2,14 @@ const isAdmin = (req, res, next) => {
   const user = req.user;
 
   //Si el token no se pudo validar devolverá esto
-  if (!req.usuario) {
+  if (!user) {
     return res.status(500).json({
       msg: "Can't validate role without validating token first",
     });
   }
 
-  const { username, role } = req.user;
+  const { username, role } = user;
+  console.log(username, role);
 
   //Si no es ADMIN se bloquea el código
   if (role !== "ADMIN_ROLE") {

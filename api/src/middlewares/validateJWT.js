@@ -1,4 +1,4 @@
-const { User } = require("../models/User");
+const { User } = require("../db");
 const jwt = require("jsonwebtoken");
 
 //Esta función verifica, a partir de un token, que el usuario exista en la db
@@ -18,7 +18,7 @@ const validateJWT = async (req, res, next) => {
     const { id } = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
 
     //A partir del ID busca al usuario
-    const user = await User.findByPk(id);
+    const user = await User.findOne({ where: { uid: id } });
 
     //Verifica que el usuario exista en la DB
     if (!user) {

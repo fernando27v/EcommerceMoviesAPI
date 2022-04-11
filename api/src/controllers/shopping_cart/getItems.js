@@ -1,14 +1,14 @@
-const { Shopping_cart, Movie, User } = require("../../db");
+const { Shopping_cart, Movie} = require("../../db");
 
 module.exports = {
-  getItems: async ({ params: { id } }, res) => {
+  getItems: async ({ params: { userId } }, res) => {
     try {
       const cart = await Shopping_cart.findAll({
         include: [
           {
-            model: Movie,
-            
-            // attributes: [],
+            model: Shopping_cart,
+            where: { UserId: userId },
+            attributes: [],
           },
         ],
         where: { UserUid: id },

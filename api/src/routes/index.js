@@ -6,7 +6,8 @@ const actorRoutes = require("./actor");
 const loadRouter = require("./loadData");
 const searchRouter = require("./search");
 const shoppingCartRouter = require("./shopping_cart");
-
+const reviewsRouter = require("./review");
+const bestMoviesRouter = require("./bestMovies");
 const router = express.Router();
 
 router.use("/movies", movieRoutes);
@@ -15,6 +16,7 @@ router.use("/genres", genreRoutes);
 router.use("/actors", actorRoutes);
 router.use("/load-data", loadRouter);
 router.use("/search", searchRouter);
-router.use("/shopping-cart", shoppingCartRouter);
-
+ router.use("/shopping-cart", shoppingCartRouter);
+ router.use("/reviews", reviewsRouter);
+router.use("/bestmovies",bestMoviesRouter)
 module.exports = router;

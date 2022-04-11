@@ -1,26 +1,65 @@
+const { Movie,movie_genre, actor_movie,Genre ,Actor} = require("../../db.js");
 
-const { Movie, Actor, Genre } = require("../../db.js");
-const { Op } = require("sequelize");
 
-const putMovies = async (req, res, next) => {
+const putMovies = async (req, res) => {
+
     const { id } = req.params;
-
-    let { title, adult, img, overview, release_date, original_language, vote_average, actors, genres, price }
+    let { title,urlMovie, adult, img, overview, release_date, original_language, vote_average, genres, actors, price }
         = req.body;
- 
-   
-    Movie.update({ title, adult, img, overview, release_date, original_language, vote_average, price, actors, genres },{ where: { id: id } })
 
-   /*  genres.forEach(async (e) => {
-        await Genre.update({ where: { id: e.id, name: e.name } })
-      }) */
+    Movie.update(
+        {
+            title, adult, img, overview, release_date, original_language, vote_average, price,urlMovie
+        }, { where: { id } })
+        .then(() => {
+            if(genres){
+                if(Array.isArray(genres)){
+                     if (genres.length > 0) {
+                movie_genre.destroy(
+                    {
+                        where: { MovieId: id }
+                    }
+                )
 
-        .then(e => {
-            res.status(200).send(e)
-        }).catch(error => {
-            res.status(400).send(`Error ${error}`);
+                genres.forEach(async (e) => {
+                   const g =  await Genre.findOne({ where: { name: e } })
+                    movie_genre.create({
+                        GenreId: g.id, MovieId: id
+
+
+                    });
+                })
+            } 
+                }
+               
+        }
+            if(actors){
+                if(Array.isArray(actors)){
+                  if (actors.length > 0) {
+                actor_movie.destroy(
+                    {
+                        where: { MovieId: id }
+                    }
+                )
+                actors.forEach(async (e) => {
+                    const a =  await Actor.findOne({ where: { name: e } })
+                    actor_movie.create({
+                        ActorId: a.id, MovieId: id
+                    });
+                })
+            }
+                }
+              
+        }
+            
+            res.send('was updated correctly')
         })
-};
+        .catch((err) => {
+            //Error Handler
+            console.log(err);
+            res.status(400).send("Error updating the movie");
+        });
+}
 
 module.exports = {
     putMovies
