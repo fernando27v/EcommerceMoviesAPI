@@ -3,14 +3,15 @@ const { Shopping_cart, Movie, User } = require("../../db");
 module.exports = {
   getItems: async ({ params: { id } }, res) => {
     try {
-      const cart = await Movie.findAll({
+      const cart = await Shopping_cart.findAll({
         include: [
           {
-            model: Shopping_cart,
-            where: { UserUid: id },
-            attributes: [],
+            model: Movie,
+            
+            // attributes: [],
           },
         ],
+        where: { UserUid: id },
       });
       res.json(cart);
     } catch (error) {

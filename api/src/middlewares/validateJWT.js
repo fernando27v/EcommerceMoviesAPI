@@ -23,7 +23,7 @@ const validateJWT = async (req, res, next) => {
     //Verifica que el usuario exista en la DB
     if (!user) {
       return res.status(401).json({
-        msg: "Invalid token",
+        msg: "Invalid token"
       });
     }
 
