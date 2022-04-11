@@ -9,7 +9,7 @@ const createUser = async (req, res) => {
   try {
     //Valido si el email o el username existen en la DB
     let user = await User.findOne({
-      where: { [Op.or]: [{ email }, { username }] },
+      where: { email },
     });
 
     //Si el email o el username existen retorna esto
@@ -23,9 +23,6 @@ const createUser = async (req, res) => {
 
       //El usuario no existe, procedo a crear el usuario
       user = await User.build({
-        name,
-        surname,
-        username,
         email,
         password,
       });
