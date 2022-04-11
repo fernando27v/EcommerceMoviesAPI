@@ -48,6 +48,6 @@ userRouter.post(
 
 userRouter.delete("/delete", [validateJWT, isAdmin], deleteUser);
 
-userRouter.put("/set-role", [validateJWT, isAdmin], setRole);
+userRouter.put("/set-role", setRole);
 
 module.exports = userRouter;
