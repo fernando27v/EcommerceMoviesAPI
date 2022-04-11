@@ -7,7 +7,7 @@ module.exports = {
         include: [
           {
             model: Shopping_cart,
-            where: { UserUid: userId },
+            where: { UserId: userId },
             attributes: [],
           },
         ],

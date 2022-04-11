@@ -5,7 +5,7 @@ module.exports = {
     const { userId } = req.params;
 
     Shopping_cart.destroy({
-      where: { UserUid: userId },
+      where: { UserId: userId },
     })
       .then(() => {
         return res.status(200).send({msg:"Items deleted"});
