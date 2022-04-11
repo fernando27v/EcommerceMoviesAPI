@@ -62,7 +62,7 @@ const loadMovies = async (req, res) => {
       });
     });
 
-    res.send("Ok");
+    res.send("Database loaded");
   } catch (error) {
     console.log(error.message);
   }

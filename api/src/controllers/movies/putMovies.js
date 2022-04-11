@@ -32,6 +32,7 @@ const putMovies = async (req, res) => {
         }
             if(actors){
                 if (actors.length > 0) {
+                    console.log('actors',actors)
                 actor_movie.destroy(
                     {
                         where: { MovieId: id }
