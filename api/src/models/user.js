@@ -39,7 +39,7 @@ module.exports = (sequelize) => {
         type: DataTypes.ENUM("ADMIN_ROLE", "SUPER_ROLE", "USER_ROLE"),
         defaultValue: "USER_ROLE",
       },
-      email_Verified :{
+      email_verified :{
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       }
