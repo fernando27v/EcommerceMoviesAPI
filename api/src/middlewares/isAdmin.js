@@ -9,7 +9,6 @@ const isAdmin = (req, res, next) => {
   }
 
   const { username, role } = user;
-  console.log(username, role);
 
   //Si no es ADMIN se bloquea el código
   if (role !== "ADMIN_ROLE") {
