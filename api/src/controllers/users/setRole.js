@@ -4,7 +4,7 @@ const setRole = async (req, res) => {
   const { role, id } = req.body;
 
   try {
-    await User.update({ role }, { where: { uid: id } });
+    await User.update({ role }, { where: { id: id } });
     res.json("Role updated");
   } catch (error) {
     console.error(error);

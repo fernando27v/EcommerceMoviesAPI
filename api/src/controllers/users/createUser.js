@@ -2,13 +2,14 @@ const { Op } = require("sequelize");
 const bcryptjs = require("bcryptjs");
 const { User } = require("../../db.js");
 
+
 const createUser = async (req, res) => {
   const { name, surname, username, email, password } = req.body;
 
   try {
     //Valido si el email o el username existen en la DB
     let user = await User.findOne({
-      where: { [Op.or]: [{ email }, { username }] },
+      where: { email },
     });
 
     //Si el email o el username existen retorna esto
@@ -22,9 +23,6 @@ const createUser = async (req, res) => {
 
       //El usuario no existe, procedo a crear el usuario
       user = await User.build({
-        name,
-        surname,
-        username,
         email,
         password,
       });

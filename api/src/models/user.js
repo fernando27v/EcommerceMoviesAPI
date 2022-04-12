@@ -1,29 +1,30 @@
 const { DataTypes } = require("sequelize");
-
 // Export de modelo
 module.exports = (sequelize) => {
   // defino el modelo
 
   sequelize.define(
-    "User",
+    "user",
     {
-      uid: {
+      id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
+      nickname: {
+        type: DataTypes.STRING,
+      },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
-      surname: {
+      lastName:{
         type: DataTypes.STRING,
-        allowNull: false,
       },
-      username: {
+      nationality:{
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
+      },
+      date_of_birth:{
+        type: DataTypes.DATEONLY,
       },
       email: {
         type: DataTypes.STRING,
@@ -38,10 +39,10 @@ module.exports = (sequelize) => {
         type: DataTypes.ENUM("ADMIN_ROLE", "SUPER_ROLE", "USER_ROLE"),
         defaultValue: "USER_ROLE",
       },
-      google: {
+      email_verified :{
         type: DataTypes.BOOLEAN,
         defaultValue: false,
-      },
+      }
     },
     { timestamps: false }
   );
