@@ -20,8 +20,8 @@ const movieRouter = express.Router();
 movieRouter.get("/", getMovies);
 movieRouter.get("/:id", getMovieById);
 movieRouter.post("/", postMovies);
-movieRouter.delete("/delete/:id", deleteMovies);
-movieRouter.put("/:id", putMovies);
+movieRouter.delete("/delete/:id", deleteMovies);//https://proyect-ecommerce.herokuapp.com/api/movies/delete/:id
+movieRouter.put("/:id", putMovies);//https://proyect-ecommerce.herokuapp.com/api/movies/id
 
 
 

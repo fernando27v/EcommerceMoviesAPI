@@ -10,14 +10,21 @@ const {
 const validateFields = require("../middlewares/validateFields");
 const validateJWT = require("../middlewares/validateJWT");
 const isAdmin = require("../middlewares/isAdmin");
+const putUser = require("../controllers/users/putUser");
+const getUserById = require("../controllers/users/getUserById");
 
 const userRouter = express.Router();
+
+
+//Crea un Usuario MRC
+
+//userRouter.post("/", createUsers);
 
 // Trae todos los usuarios
 userRouter.get("/", getUsers);
 
 // Registro de Usuario
-userRouter.post(
+ userRouter.post(
   "/create",
   [
     //Middleware para validar campos
@@ -31,7 +38,7 @@ userRouter.post(
     validateFields,
   ],
   createUser
-);
+); 
 
 // Login de Usuario
 userRouter.post(
@@ -49,5 +56,7 @@ userRouter.post(
 userRouter.delete("/delete", deleteUser);
 
 userRouter.put("/set-role", setRole);
+userRouter.put("/:id", putUser);
+userRouter.get('/:id', getUserById)
 
 module.exports = userRouter;
