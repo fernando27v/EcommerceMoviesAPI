@@ -6,12 +6,13 @@ const {
   loginUser,
   deleteUser,
   setRole,
+  putUser,
+  getUserByEmail
 } = require("../controllers/users/index");
 const validateFields = require("../middlewares/validateFields");
 const validateJWT = require("../middlewares/validateJWT");
 const isAdmin = require("../middlewares/isAdmin");
-const putUser = require("../controllers/users/putUser");
-const getUserById = require("../controllers/users/getUserById");
+
 
 const userRouter = express.Router();
 
@@ -56,7 +57,7 @@ userRouter.post(
 userRouter.delete("/delete", deleteUser);
 
 userRouter.put("/set-role", setRole);
-userRouter.put("/:id", putUser);
-userRouter.get('/:id', getUserById)
+userRouter.put("/:email", putUser);
+userRouter.get('/:email', getUserByEmail)
 
 module.exports = userRouter;

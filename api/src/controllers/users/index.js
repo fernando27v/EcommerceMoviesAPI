@@ -3,6 +3,8 @@ const createUser = require("./createUser");
 const loginUser = require("./loginUser");
 const deleteUser = require("./deleteUser");
 const setRole = require("./setRole");
+const putUser = require("./putUser");
+const getUserByEmail = require("./getUserByEmail");
 
 module.exports = {
   getUsers,
@@ -10,4 +12,6 @@ module.exports = {
   loginUser,
   deleteUser,
   setRole,
+  putUser,
+  getUserByEmail
 };
