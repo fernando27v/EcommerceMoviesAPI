@@ -4,7 +4,8 @@ const { User } = require("../../db.js");
 
 
 const createUser = async (req, res) => {
-  const { name, surname, username, email, password } = req.body;
+  const {email} = req.params;
+  const {nickname, name, lastName} = req.body;
 
   try {
     //Valido si el email o el username existen en la DB
@@ -18,21 +19,18 @@ const createUser = async (req, res) => {
         msg: "Already exists an account with that email or username",
       });
     } else {
-      //Crea un "salt" para encriptar la contraseña
-      const salt = bcryptjs.genSaltSync();
 
       //El usuario no existe, procedo a crear el usuario
       user = await User.build({
         email,
-        password,
-      });
-
-      //Encripto la contraseña del usuario
-      user.password = bcryptjs.hashSync(password, salt);
-
+        nickname,
+        name,
+        lastName
+      })
       await user.save();
 
       return res.status(200).json(user);
+    
     }
   } catch (error) {
     console.error(error);

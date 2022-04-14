@@ -1,6 +1,7 @@
 const express = require("express");
 
 const {
+  createUser,
   getUsers,
   deleteUser,
   setRole,
@@ -15,9 +16,9 @@ const {
 const userRouter = express.Router();
 
 
-//Crea un Usuario MRC
 
-//userRouter.post("/", createUsers);
+
+userRouter.post("/:email", createUser);
 
 // Trae todos los usuarios
 userRouter.get("/", getUsers);
