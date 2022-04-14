@@ -8,6 +8,8 @@ const searchRouter = require("./search");
 const shoppingCartRouter = require("./shopping_cart");
 const reviewsRouter = require("./review");
 const bestMoviesRouter = require("./bestMovies");
+const OrdersRouter = require("./Order");
+const mercadopago = require("./mercadopago");
 const router = express.Router();
 
 router.use("/movies", movieRoutes);
@@ -16,7 +18,9 @@ router.use("/genres", genreRoutes);
 router.use("/actors", actorRoutes);
 router.use("/load-data", loadRouter);
 router.use("/search", searchRouter);
- router.use("/shopping-cart", shoppingCartRouter);
- router.use("/reviews", reviewsRouter);
-router.use("/bestmovies",bestMoviesRouter)
+router.use("/shopping-cart", shoppingCartRouter);
+router.use("/reviews", reviewsRouter);
+router.use("/bestmovies", bestMoviesRouter);
+router.use("/orders", OrdersRouter);
+router.use("/mercadopago", mercadopago);
 module.exports = router;
