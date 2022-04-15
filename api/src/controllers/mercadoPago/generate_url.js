@@ -10,7 +10,10 @@ mercadopago.configure({
 
 //Ruta que genera la URL de MercadoPago
 const generate_url = async ({ body }, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*")
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+res.setHeader("Access-Control-Max-Age", "1800");
+res.setHeader("Access-Control-Allow-Headers", "content-type");
+res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
   // const id_orden = 1;
   const { id_orden } = body;
   // //Cargamos el carrido de la bd
