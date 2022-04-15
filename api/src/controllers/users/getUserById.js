@@ -1,6 +1,6 @@
 const { Op } = require("sequelize");
 const bcryptjs = require("bcryptjs");
-const { User } = require("../../db.js");
+const { User, user } = require("../../db.js");
 
 const getUserById = async (req, res) => {
     try {
