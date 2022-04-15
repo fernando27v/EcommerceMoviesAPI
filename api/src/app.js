@@ -8,7 +8,7 @@ const server = express();
 const cors = require("cors");
 server.name = "API";
 
-server.use(cors({origin: "http://localhost:3000"}));
+server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true, limit: "100mb" }));
 server.use(bodyParser.json({ limit: "100mb" }));
 server.use(cookieParser());
