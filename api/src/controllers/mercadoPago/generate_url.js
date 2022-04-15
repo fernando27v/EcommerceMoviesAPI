@@ -9,9 +9,9 @@ mercadopago.configure({
 });
 
 //Ruta que genera la URL de MercadoPago
-const generate_url = async ({ body }, res, next) => {
+const generate_url = async ({ params }, res, next) => {
   // const id_orden = 1;
-  const { id_orden } = body;
+  const { id_orden } = params;
   // //Cargamos el carrido de la bd
   const carrito = await Order_detail.findAll({
     where: { OrderId: id_orden },
