@@ -17,7 +17,8 @@ const createUser = async (req, res) => {
         email,
         nickname,
         name,
-        lastName
+        lastName,
+        email_verified: true
        },
     });
     return res.status(200).json(user);
