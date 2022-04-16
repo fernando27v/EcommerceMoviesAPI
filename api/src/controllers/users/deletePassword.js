@@ -5,10 +5,11 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const deletePassword = async (req, res) => {
   try {
     const { id } = req.body;
-   const us = await User.update({password: null},{ where: { id: id } });
+   await User.update({password: null},{ where: { id: id } });
+   const us = User.findOne({ where: { id: id } });
 
     const msg = {
-      to: us.email, 
+      to: `${us.email}`, 
       from: 'Cinéma á la carte <cinemaalacarte0@gmail.com>', 
       subject: 'Please, change your password',
       html: `<html>
