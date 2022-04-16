@@ -31,6 +31,6 @@ userRouter.put("/set-role", setRole);
 userRouter.put("/:email", putUser);
 userRouter.get('/:email', getUserByEmail);
 userRouter.put("/email-verify/:email", putEmailVerify)
-userRouter.delete("/", deletePassword);
+userRouter.delete("/delete-password", deletePassword);
 
 module.exports = userRouter;

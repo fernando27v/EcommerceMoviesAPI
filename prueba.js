@@ -1,14 +1,9 @@
-const { User } = require("../../db");
 const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+sgMail.setApiKey("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")
 
-const deletePassword = async (req, res) => {
-  try {
-    const { id } = req.body;
-   const us = await User.update({password: null},{ where: { id: id } });
 
     const msg = {
-      to: us.email, 
+      to: "fernandovale3004@gmail.com", 
       from: 'Cinéma á la carte <cinemaalacarte0@gmail.com>', 
       subject: 'Please, change your password',
       html: `<html>
@@ -87,14 +82,3 @@ const deletePassword = async (req, res) => {
   .catch((error) => {
     console.error(error)
   })
-
-    res.json({ msg: "Password deleted" });
-
-
-
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-module.exports = deletePassword;
