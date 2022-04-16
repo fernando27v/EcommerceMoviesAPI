@@ -6,7 +6,7 @@ const deletePassword = async (req, res) => {
   try {
     const { id } = req.body;
    await User.update({password: null},{ where: { id: id } });
-   const us = User.findOne({ where: { id: id } });
+   const us = await git stUser.findOne({ where: { id: id } });
 
     const msg = {
       to: `${us.email}`, 
