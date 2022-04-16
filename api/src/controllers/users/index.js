@@ -6,6 +6,7 @@ const setRole = require("./setRole");
 const putUser = require("./putUser");
 const getUserByEmail = require("./getUserByEmail");
 const putEmailVerify = require("./putEmailVerify");
+const deletePassword = require("./deletePassword");
 
 module.exports = {
   getUsers,
@@ -15,5 +16,6 @@ module.exports = {
   setRole,
   putUser,
   getUserByEmail,
-  putEmailVerify 
+  putEmailVerify,
+  deletePassword
 };
