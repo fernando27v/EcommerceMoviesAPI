@@ -6,7 +6,7 @@ module.exports = {
     const { MovieId } = req.body;
 
     Shopping_cart.destroy({
-      where: { UserId: userId, MovieId },
+      where: { userId: userId, MovieId },
     })
       .then(() => {
         res.status(200).json({ msg: "item deleted" });
