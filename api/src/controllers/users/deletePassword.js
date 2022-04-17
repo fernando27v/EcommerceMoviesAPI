@@ -55,7 +55,7 @@ const deletePassword = async (req, res) => {
     
                   <p>
                   If you want to continue enjoying your movies, 
-                  please go to the following link and then click on "Don't remember your password?, 
+                  please go to the following link and then click on "Don't remember your password?", 
                   follow the steps and then your new password will be established 
                   <p><strong><a href="https://bold-art-9172.us.auth0.com/login?state=hKFo2SB0Y1Fob1BWR25NVkVLQ1dEZWo3MGRlWDdHVzZxeERKaKFupWxvZ2luo3RpZNkgNUZSSTgycHd1bXkwQVBXS2hneXZVUWV5cnV3SmQ1bl-jY2lk2SAzaWdtazNTSXRvMDVnR29wMTc4ZGU3Z3pRT095UHJtYw&client=3igmk3SIto05gGop178de7gzQOOyPrmc&protocol=oauth2&redirect_uri=https%3A%2F%2Fcinema-a-la-carte.vercel.app&scope=openid%20profile%20email&response_type=code&response_mode=query&nonce=TVNsWGJyLjFkSXYyRFpId1A2NE5pLmJLOThWU0lLLmZuclljN1Zid0YyUA%3D%3D&code_challenge=ZXI-0j7qdwZnuUBpG3cmrWFzDmdlAvuhBlKqqxJZ2es&code_challenge_method=S256&auth0Client=eyJuYW1lIjoiYXV0aDAtcmVhY3QiLCJ2ZXJzaW9uIjoiMS45LjAifQ%3D%3D">Click here</a></strong></p>
                   </p>
