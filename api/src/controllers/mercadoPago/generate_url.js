@@ -57,7 +57,7 @@ const generate_url = async ({ params }, res, next) => {
       global.id = response.body.id;
       global.init_point = response.body.init_point;
       console.log(global.init_point);
-      res.json({ id: global.id });
+      res.json({ id: global.id ,init_point: global.init_point});
     })
     .catch(function (error) {
       console.log(error);
