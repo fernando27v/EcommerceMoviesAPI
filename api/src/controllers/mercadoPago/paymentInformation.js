@@ -1,8 +1,9 @@
 const { Order } = require("../../db");
+const { sendMail } = require("../../helpers/sendMail");
 
 //Ruta que recibe la información del pago
 const paymentInformation = async (req, res) => {
-  // console.info("EN LA RUTA PAGOS ", req);
+   console.info("EN LA RUTA PAGOS ");
   const payment_id = req.query.payment_id;
   const payment_status = req.query.status;
   const external_reference = req.query.external_reference;
@@ -15,13 +16,13 @@ const paymentInformation = async (req, res) => {
       order.payment_id = payment_id;
       order.payment_status = payment_status;
       order.merchant_order_id = merchant_order_id;
-      order.status = payment_status;
+      // order.status = payment_status;
       // console.info("Salvando order");
       order
         .save()
         .then((_) => {
           console.info("redirect success");
-
+          sendMail(external_reference);
           return res.redirect("https://cinema-a-la-carte.vercel.app/home");
         })
         .catch((err) => {
