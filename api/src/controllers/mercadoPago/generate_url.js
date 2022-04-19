@@ -11,8 +11,9 @@ mercadopago.configure({
 //Ruta que genera la URL de MercadoPago
 const generate_url = async ({ params }, res, next) => {
   // const id_orden = 1;
-  const { id_orden } = params;
+  const { id_orden } = params
   // //Cargamos el carrido de la bd
+  console.log(id_orden);
   const carrito = await Order_detail.findAll({
     where: { OrderId: id_orden },
     include: [{ model: Movie }],
@@ -39,11 +40,17 @@ const generate_url = async ({ params }, res, next) => {
     },
     back_urls: {
       success:
-        "https://proyect-ecommerce.herokuapp.com/api/mercadopago/paymentinformation",
+        "http://localhost:3001/api/mercadopago/paymentinformation",
       failure:
-        "https://proyect-ecommerce.herokuapp.com/api/mercadopago/paymentinformation",
+        "http://localhost:3001/api/mercadopago/paymentinformation",
       pending:
-        "https://proyect-ecommerce.herokuapp.com/api/mercadopago/paymentinformation",
+        "http://localhost:3001/api/mercadopago/paymentinformation",
+      // success:
+      //   "https://proyect-ecommerce.herokuapp.com/api/mercadopago/paymentinformation",
+      // failure:
+      //   "https://proyect-ecommerce.herokuapp.com/api/mercadopago/paymentinformation",
+      // pending:
+      //   "https://proyect-ecommerce.herokuapp.com/api/mercadopago/paymentinformation",
     },
     auto_return: "approved",
     statement_descriptor: "CINEMAALACARTE",
