@@ -15,7 +15,7 @@ const sendMail = async (external_reference) => {
     atrributes: [],
   });
   let peliculas = fs.readFileSync(__dirname + "/movies.html", "utf-8");
-  let peliculas1 = ""
+  let peliculas1 = "";
   const items_ml = carrito.map((i) => {
     peliculas1 += peliculas
       .replace("{titleMovie}", i.Movie.title)
@@ -26,7 +26,14 @@ const sendMail = async (external_reference) => {
   console.log(items_ml);
 
   let html = fs.readFileSync(__dirname + "/correo.html", "utf-8");
-  html = html.replace("{Movies}", peliculas1);
+  console.log(external_reference);
+  html = html
+    .replace("{Movies}", peliculas1)
+    .replace(
+      "{nameUser}",
+      `${user[0].dataValues.name} ${user[0].dataValues.lastName}`
+    )
+    .replace("{OrderID}", external_reference);
 
   const msg = {
     to: user[0].dataValues.email, // Change to your recipient

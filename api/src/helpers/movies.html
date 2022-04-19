@@ -1,21 +1,66 @@
-<div style="display: flex; flex-direction: row">
-  <div>
-    <a target="_blank" href="https://cinema-a-la-carte.vercel.app/home">
-      <img
-        class="adapt-img esdev-stretch-width esdev-banner-rendered"
-        src="{imageMovie}"
-        alt
-        title
-        width="80%"
-      />
-    </a>
-  </div>
-  <div style="display: flex; flex-direction: column">
-    <div>
-      <h3 style="color: #e84545"><b>{titleMovie}</b></h3>
-    </div>
-    <div>
-      <p>{overview}</p>
-    </div>
-  </div>
-</div>
+<tr style="margin-top: 5px !important; margin-bottom: 5px !important">
+  <td class="esd-structure es-p20t es-p20r es-p20l" align="left">
+    <!--[if mso]><table dir="ltr" cellpadding="0"><table dir="rtl" width="560" cellpadding="0" cellspacing="0"><tr><td dir="ltr" width="170" valign="top"><![endif]-->
+    <table cellpadding="0" cellspacing="0" class="es-right" align="right">
+      <tbody>
+        <tr>
+          <td width="370" align="left" class="esd-container-frame es-m-p20b">
+            <table cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <td align="left" class="esd-block-text">
+                    <h3 style="color: #e84545"><b>{titleMovie}</b></h3>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" class="esd-block-text es-p10t es-p10b">
+                    <p><strong>2hr : 15mins&nbsp;</strong></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" class="esd-block-text es-p10t es-p10b">
+                    <p style="color: white !important">{overview}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--[if mso]></td><td dir="ltr" width="20"></td><td dir="ltr" width="370" valign="top"><![endif]-->
+    <table cellpadding="0" cellspacing="0" align="left" class="es-left">
+      <tbody>
+        <tr>
+          <td width="170" align="left" class="esd-container-frame">
+            <table cellpadding="0" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <td
+                    align="center"
+                    class="esd-block-banner"
+                    style="position: relative"
+                    esdev-config="h4"
+                  >
+                    <a
+                      target="_blank"
+                      href="https://cinema-a-la-carte.vercel.app"
+                      ><img
+                        class="adapt-img esdev-stretch-width esdev-banner-rendered"
+                        src="{imageMovie}"
+                        alt
+                        title
+                        width="170"
+                        style="display: block;padding-top: 5px !important;padding-bottom: 5px !important;"
+                    /></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!--[if mso]></td></tr></table></table><![endif]-->
+  </td>
+</tr>
