@@ -7,7 +7,7 @@ module.exports = {
     try {
       MovieId.forEach(async (e) => {
         await Shopping_cart.create({
-          UserId: userId,
+          userId: userId,
           MovieId: e,
         });
       });
