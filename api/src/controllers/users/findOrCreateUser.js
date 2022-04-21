@@ -6,6 +6,9 @@ const findOrCreateUser = async (req, res) => {
 
   try {
     //Valido si el email o el username existen en la DB
+    if(email === undefined || email === "undefined"){
+      return res.status(200).json({});
+    }else{
     const user = await User.findOne({where:{email}});
     if(user){
       return res.status(200).json(user);
@@ -22,7 +25,7 @@ const findOrCreateUser = async (req, res) => {
     return res.status(200).json(user);
     }
     
-
+  }
       
     
     
