@@ -6,12 +6,10 @@ module.exports = {
       const cart = await Shopping_cart.findAll({
         include: [
           {
-            model: Shopping_cart,
-            where: { UserId: userId },
-            attributes: [],
+            model: Movie,
           },
         ],
-        where: { UserUid: id },
+        where: { userId: userId },
       });
       res.json(cart);
     } catch (error) {

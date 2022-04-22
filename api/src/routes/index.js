@@ -11,6 +11,7 @@ const bestMoviesRouter = require("./bestMovies");
 const OrdersRouter = require("./Order");
 
 const mercadopago = require("./mercadopago");
+const countriesRouter = require("./countries");
 const router = express.Router();
 
 router.use("/movies", movieRoutes);
@@ -25,4 +26,5 @@ router.use("/bestmovies", bestMoviesRouter);
 router.use("/orders", OrdersRouter);
 
 router.use("/mercadopago", mercadopago);
+router.use("/countries",countriesRouter )
 module.exports = router;
